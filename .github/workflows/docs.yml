@@ -1,0 +1,29 @@
+name: Build and publish docs
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-publish-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install Kaitai
+        run: |
+          curl -LO https://github.com/kaitai-io/kaitai_struct_compiler/releases/download/0.10/kaitai-struct-compiler_0.10_all.deb
+          apt-get install -y ./kaitai-struct-compiler_0.10_all.deb
+      - name: Build docs
+        run: |
+          python scripts/compile_pages.py
+          touch dist/.nojekyll
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
