@@ -39,8 +39,9 @@ for file in glob('formats/*.ksy'):
     print(f'Processing "{file}"...')
 
     filename = os.path.splitext(os.path.basename(file))[0]
-    subprocess.call([BIN_KAITAI, '--target', 'graphviz', '--outdir', DIR_DIST, file], shell=True)
-    subprocess.call([BIN_GRAPHVIZ, '-Gfontname=Helvetica', '-Nfontname=Helvetica', '-Efontname=Helvetica', '-Tsvg', f'{DIR_DIST}/{filename}.dot', '-o', f'{DIR_DIST}/graph_{filename}.svg'], shell=True)
+    print([BIN_KAITAI, '--target', 'graphviz', '--outdir', DIR_DIST, file])
+    subprocess.call([BIN_KAITAI, '--target', 'graphviz', '--outdir', DIR_DIST, file])
+    subprocess.call([BIN_GRAPHVIZ, '-Gfontname=Helvetica', '-Nfontname=Helvetica', '-Efontname=Helvetica', '-Tsvg', f'{DIR_DIST}/{filename}.dot', '-o', f'{DIR_DIST}/graph_{filename}.svg'])
     os.remove(f'{DIR_DIST}/{filename}.dot')
 
     formats.append({
