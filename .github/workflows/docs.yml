@@ -19,7 +19,7 @@ jobs:
       - name: Install Kaitai
         run: |
           curl -LO https://github.com/kaitai-io/kaitai_struct_compiler/releases/download/0.10/kaitai-struct-compiler_0.10_all.deb
-          apt-get update && apt-get install -y ./kaitai-struct-compiler_0.10_all.deb
+          sudo apt-get update && sudo apt-get install -y ./kaitai-struct-compiler_0.10_all.deb
       - name: Build docs
         run: |
           python scripts/compile_pages.py
