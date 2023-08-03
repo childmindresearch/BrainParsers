@@ -1,7 +1,24 @@
 meta:
   id: nifti2
+  title: Neuroimaging Informatics Technology Initiative (NIfTI) 2 data format
   file-extension: nii
   endian: le
+doc-ref: 'https://nifti.nimh.nih.gov/nifti-2'
+doc: |
+  The NIfTI committee, in conjunction with public discussion on the NITRC forum, have
+  created a final version for the NIfTI-2 format that is a very simple extension of
+  the current NIfTI-1 format, but updated to allow 64-bit storage and addressing for
+  large images and matrices.
+
+  It is intended that this format:
+
+  * will enable the storage of large images and matrices, with all dimensions being coded by 64-bit integers rather than the current limitation of 16-bit signed integers (which currently gives a restrictive 32767 size limit in each dimension)
+  * will be very simple to implement and update software (a couple of hours coding or less generally)
+  * contains the same information and logic as a NIfTI-1 file (no new fields and all current fields still retained)
+  * will support the existing file formats and naming: a .nii single-file, a .hdr/.img file-pair and their gzipped versions
+  * has a very simple test (see below) to determine if the file is NIfTI-1 or NIfTI-2
+  * does not replace NIfTI-1 in the short term but is supported alongside it
+
 
 seq:
   - id: header

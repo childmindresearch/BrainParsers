@@ -1,7 +1,30 @@
 meta:
   id: nifti1
+  title: Neuroimaging Informatics Technology Initiative (NIfTI) 1.1 data format
   file-extension: nii
   endian: le
+doc-ref: 'https://nifti.nimh.nih.gov/nifti-1'
+doc: |
+  NIfTI-1 is adapted from the widely used ANALYZE(TM) 7.5 file format. The hope is
+  that older non-NIfTI-aware software that uses the ANALYZE 7.5 format will still be
+  compatible with NIfTI-1. NIfTI-1 uses the "empty space" in the ANALYZE 7.5 header to
+  add several new features. These innovations are summarized in the OHBM poster [PDF], 
+  and include
+
+  * Affine coordinate definitions relating voxel index (i,j,k) to spatial location (x,y,z);
+  * Codes to indicate spatio-temporal slice ordering for FMRI;
+  * "Complete" set of 8-128 bit data types;
+  * Standardized way to store vector-valued datasets over 1-4 dimensional domains;
+  * Codes to indicate data "meaning";
+  * A standardized way to add "extension" data to the header;
+  * Dual file (.hdr & .img) or single file (.nii) storage;
+
+  and many more. The goal is to foster interoperability at the file-exchange level between 
+  FMRI data analysis software packages. The authors of AFNI, BrainVoyager, FSL, and SPM have 
+  all committed to support this format for both input and output.
+
+  Note: The specification is now called NIfTI-1.1, with the finalization of the format for 
+  "extension" data, and a few other minor tweaks to the format that took place in early 2005.
 
 seq:
   - id: header
