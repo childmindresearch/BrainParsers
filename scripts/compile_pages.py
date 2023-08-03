@@ -4,14 +4,14 @@ import os
 from glob import glob
 import subprocess
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)) + '/../')
+os.chdir(os.path.dirname(os.path.abspath(__file__)) + "/../")
 print(f'Running in: "{os.getcwd()}"')
 
-DIR_DIST = 'dist'
-BIN_KAITAI = 'kaitai-struct-compiler'
-BIN_GRAPHVIZ = 'dot'
+DIR_DIST = "dist"
+BIN_KAITAI = "kaitai-struct-compiler"
+BIN_GRAPHVIZ = "dot"
 
-HTML_TEMPLATE = '''
+HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,28 +31,44 @@ HTML_TEMPLATE = '''
     {body}
 </body>
 </html>
-'''
+"""
 
 formats = []
 
-for file in glob('formats/*.ksy'):
+for file in glob("formats/*.ksy"):
     print(f'Processing "{file}"...')
 
     filename = os.path.splitext(os.path.basename(file))[0]
-    print([BIN_KAITAI, '--target', 'graphviz', '--outdir', DIR_DIST, file])
-    subprocess.call([BIN_KAITAI, '--target', 'graphviz', '--outdir', DIR_DIST, file])
-    subprocess.call([BIN_GRAPHVIZ, '-Gfontname=Helvetica', '-Nfontname=Helvetica', '-Efontname=Helvetica', '-Tsvg', f'{DIR_DIST}/{filename}.dot', '-o', f'{DIR_DIST}/graph_{filename}.svg'])
-    os.remove(f'{DIR_DIST}/{filename}.dot')
+    if (
+        subprocess.call(
+            [BIN_KAITAI, "--target", "graphviz", "--outdir", DIR_DIST, file]
+        )
+        == 0
+    ):
+        subprocess.call(
+            [
+                BIN_GRAPHVIZ,
+                "-Gfontname=Helvetica",
+                "-Nfontname=Helvetica",
+                "-Efontname=Helvetica",
+                "-Tsvg",
+                f"{DIR_DIST}/{filename}.dot",
+                "-o",
+                f"{DIR_DIST}/graph_{filename}.svg",
+            ]
+        )
+    try:
+        os.remove(f"{DIR_DIST}/{filename}.dot")
+    except OSError:  # File not found
+        pass
 
-    formats.append({
-        'file': file,
-        'name': filename,
-        'img': f'graph_{filename}.svg'
-    })
+    formats.append({"file": file, "name": filename, "img": f"graph_{filename}.svg"})
 
-formats.sort(key=lambda x: x['name'])
-formats_html = '\n'.join([f'<h2>{x["name"]}</h2><img class="gv-graph" src="{x["img"]}">' for x in formats])
+formats.sort(key=lambda x: x["name"])
+formats_html = "\n".join(
+    [f'<h2>{x["name"]}</h2><img class="gv-graph" src="{x["img"]}">' for x in formats]
+)
 html = HTML_TEMPLATE.format(body=formats_html)
 
-with open(f'{DIR_DIST}/index.html', 'w') as f:
+with open(f"{DIR_DIST}/index.html", "w") as f:
     f.write(html)
