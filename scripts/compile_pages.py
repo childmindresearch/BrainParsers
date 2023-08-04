@@ -112,7 +112,7 @@ for file in glob("formats/*.ksy"):
     if (
         subprocess.call(
             [BIN_KAITAI, "--target", "graphviz", "--outdir", DIR_DIST, file],
-            shell=os.name == 'nt'
+            shell=os.name == "nt",
         )
         == 0
     ):
@@ -136,7 +136,9 @@ for file in glob("formats/*.ksy"):
     with open(file, "r") as f:
         ksy = yaml.safe_load(f)
 
-    formats.append({"file": file, "name": filename, "img": f"graph_{filename}.svg", "ksy": ksy})
+    formats.append(
+        {"file": file, "name": filename, "img": f"graph_{filename}.svg", "ksy": ksy}
+    )
 
 
 # convert all lines starting with '* ' to <li>
@@ -148,7 +150,7 @@ def format_doc(text):
             if not ul_open:
                 lines.append("<ul>")
                 ul_open = True
-            lines.append(f'<li>{line[2:]}</li>')
+            lines.append(f"<li>{line[2:]}</li>")
         else:
             if ul_open:
                 lines.append("</ul>")
@@ -163,14 +165,19 @@ formats_html = "\n".join(
     [
         HTML_TEMPLATE_ENTRY.format(
             id=x["name"],
-            title=x["name"] if "title" not in x["ksy"]["meta"] else x["ksy"]["meta"]["title"],
-            extension='.' + x["ksy"]["meta"]["file-extension"],
+            title=x["name"]
+            if "title" not in x["ksy"]["meta"]
+            else x["ksy"]["meta"]["title"],
+            extension="." + x["ksy"]["meta"]["file-extension"],
             file=x["file"],
-            doc=format_doc("[Description]" if "doc" not in x["ksy"] else x["ksy"]["doc"]),
+            doc=format_doc(
+                "[Description]" if "doc" not in x["ksy"] else x["ksy"]["doc"]
+            ),
             doc_ref="#" if "doc-ref" not in x["ksy"] else x["ksy"]["doc-ref"],
             img=x["img"],
         )
-     for x in formats]
+        for x in formats
+    ]
 )
 html = HTML_TEMPLATE.format(body=formats_html)
 
