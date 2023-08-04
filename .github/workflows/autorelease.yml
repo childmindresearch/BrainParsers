@@ -1,0 +1,36 @@
+name: Auto release
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz
+          curl -LO https://github.com/kaitai-io/kaitai_struct_compiler/releases/download/0.10/kaitai-struct-compiler_0.10_all.deb
+          sudo apt-get install -y ./kaitai-struct-compiler_0.10_all.deb
+          pip install pyyaml
+      - name: Build docs
+        run: |
+          python scripts/compile_libs.py
+      - uses: "softprops/action-gh-release@v1"
+        with:
+          prerelease: true
+          name: "Development Build"
+          body_path: "build/README.md"
+          files: |
+            build/*.zip
