@@ -31,6 +31,7 @@ jobs:
         with:
           prerelease: true
           name: "Development Build"
+          tag_name: "dev"
           body_path: "build/README.md"
           files: |
             build/*.zip
