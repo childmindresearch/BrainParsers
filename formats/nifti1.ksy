@@ -3,7 +3,7 @@ meta:
   title: Neuroimaging Informatics Technology Initiative (NIfTI) 1.1 data format
   file-extension: nii
   endian: le
-doc-ref: 'https://nifti.nimh.nih.gov/nifti-1'
+doc-ref: "https://nifti.nimh.nih.gov/nifti-1"
 doc: |
   NIfTI-1 is adapted from the widely used ANALYZE(TM) 7.5 file format. The hope is
   that older non-NIfTI-aware software that uses the ANALYZE 7.5 format will still be
@@ -33,7 +33,7 @@ seq:
     type: header_extension
   - id: data
     type: data
-    
+
 types:
   header:
     seq:
@@ -63,7 +63,7 @@ types:
         type: s1
         enum: slice
         doc: "MRI slice ordering."
-        
+
       - id: dim
         type: s2
         repeat: expr
@@ -133,7 +133,7 @@ types:
       - id: glmin
         type: s4
         doc: "Unused."
-        
+
       - id: descrip
         type: str
         size: 80
@@ -144,7 +144,7 @@ types:
         size: 24
         encoding: UTF-8
         doc: "Auxiliary filename."
-      
+
       - id: qform_code
         type: s2
         enum: xform
@@ -153,7 +153,7 @@ types:
         type: s2
         enum: xform
         doc: "NIFTI_XFORM_* code."
-      
+
       - id: quatern_b
         type: f4
         doc: "Quaternion b param."
@@ -169,10 +169,10 @@ types:
       - id: qoffset_y
         type: f4
         doc: "Quaternion y param."
-      - id: qoffset_z 
+      - id: qoffset_z
         type: f4
         doc: "Quaternion z param."
-        
+
       - id: srow_x
         type: f4
         repeat: expr
@@ -188,19 +188,19 @@ types:
         repeat: expr
         repeat-expr: 4
         doc: "3rd row affine transform."
-        
+
       - id: intent_name
         type: str
         size: 16
         encoding: UTF-8
         doc: "'name' or meaning of data."
-      
+
       - id: magic
         type: str
         size: 4
         encoding: UTF-8
         doc: 'MUST be "ni1\0" or "n+1\0".'
-        
+
     instances:
       spatial_units:
         value: xyzt_units & 0b111
@@ -208,7 +208,7 @@ types:
       temporal_units:
         value: xyzt_units & 0b111000
         enum: units
-        
+
   header_extension:
     seq:
       - id: extension
@@ -216,12 +216,12 @@ types:
         size: 4
         encoding: UTF-8
         doc: "TODO."
-        
+
   data:
     seq:
       - id: data
         size-eos: true
-      
+
 enums:
   dt:
     0: unknown
@@ -242,7 +242,7 @@ enums:
     1792: complex128
     2048: complex256
     2304: rgba32
-    
+
   intent:
     0: none
     2: correl
@@ -291,7 +291,7 @@ enums:
     2016: fsl_topup_cubic_spline_coefficients
     2017: fsl_topup_quadratic_spline_coefficients
     2018: fsl_topup_field
-    
+
   xform:
     0: unknown
     1: scanner_anat
@@ -299,7 +299,7 @@ enums:
     3: talairach
     4: mni_152
     5: template_other
-    
+
   units:
     0: unknown
     1: meter
@@ -311,7 +311,7 @@ enums:
     32: hz
     40: ppm
     48: rads
-    
+
   slice:
     0: unknown
     1: seq_inc
@@ -320,5 +320,92 @@ enums:
     4: alt_dec
     5: alt_inc2
     6: alt_dec2
-    
-       
+
+  ecode:
+    0: ignore
+    2:
+      id: dicom
+      doc: "intended for raw DICOM attributes"
+    4:
+      id: afni
+      doc: |
+        Robert W Cox: rwcox@nih.gov
+        https://afni.nimh.nih.gov/afni
+    6:
+      id: comment
+      doc: "plain ASCII text only"
+    8:
+      id: xcede
+      doc: |
+        David B Keator: dbkeator@uci.edu
+        http://www.nbirn.net/Resources/Users/Applications/xcede/index.htm
+    10:
+      id: jimdiminfo
+      doc: |
+        Mark A Horsfield
+        mah5@leicester.ac.uk
+    12:
+      id: workflow_fwds
+      doc: |
+        Kate Fissell: fissell@pitt.edu
+        http://kraepelin.wpic.pitt.edu/~fissell/NIFTI_ECODE_WORKFLOW_FWDS/NIFTI_ECODE_WORKFLOW_FWDS.html
+    14:
+      id: freesurfer
+      doc: "http://surfer.nmr.mgh.harvard.edu/"
+    16:
+      id: pypickle
+      doc: "embedded Python objects"
+    18:
+      id: mind_ident
+      doc: |
+        LONI MiND codes: http://www.loni.ucla.edu/twiki/bin/view/Main/MiND
+        Vishal Patel: vishal.patel@ucla.edu
+    20:
+      id: b_value
+      doc: |
+        LONI MiND codes: http://www.loni.ucla.edu/twiki/bin/view/Main/MiND
+        Vishal Patel: vishal.patel@ucla.edu
+    22:
+      id: spherical_direction
+      doc: |
+        LONI MiND codes: http://www.loni.ucla.edu/twiki/bin/view/Main/MiND
+        Vishal Patel: vishal.patel@ucla.edu
+    24:
+      id: dt_component
+      doc: |
+        LONI MiND codes: http://www.loni.ucla.edu/twiki/bin/view/Main/MiND
+        Vishal Patel: vishal.patel@ucla.edu
+    26:
+      id: shc_degreeorder
+      doc: |
+        LONI MiND codes: http://www.loni.ucla.edu/twiki/bin/view/Main/MiND
+        Vishal Patel: vishal.patel@ucla.edu
+    28:
+      id: voxbo
+      doc: "Dan Kimberg: www.voxbo.org"
+    30:
+      id: caret
+      doc: |
+        John Harwell: john@brainvis.wustl.edu
+        http://brainvis.wustl.edu/wiki/index.php/Caret:Documentation:CaretNiftiExtension
+    32:
+      id: cifti
+      doc: CIFTI-2_Main_FINAL_1March2014.pdf
+    34: variable_frame_timing
+    38:
+      id: eval
+      doc: "Munster University Hospital"
+    40:
+      id: matlab
+      doc: |
+        MATLAB extension
+        http://www.mathworks.com/matlabcentral/fileexchange/42997-dicom-to-nifti-converter
+    42:
+      id: quantiphyse
+      doc: |
+        Quantiphyse extension
+        https://quantiphyse.readthedocs.io/en/latest/advanced/nifti_extension.html
+    44:
+      id: mrs
+      doc: |
+        Magnetic Resonance Spectroscopy (MRS)
