@@ -137,7 +137,7 @@
 <polygon fill="none" stroke="black" points="433,-1083 433,-1104 467,-1104 467,-1083 433,-1083"/>
 <text text-anchor="start" x="445" y="-1089.8" font-family="Helvetica,sans-Serif" font-size="14.00">1</text>
 <polygon fill="none" stroke="black" points="467,-1083 467,-1104 556,-1104 556,-1083 467,-1083"/>
-<text text-anchor="start" x="481" y="-1089.8" font-family="Helvetica,sans-Serif" font-size="14.00">s1→Slice</text>
+<text text-anchor="start" x="503" y="-1089.8" font-family="Helvetica,sans-Serif" font-size="14.00">s1</text>
 <polygon fill="none" stroke="black" points="556,-1083 556,-1104 659,-1104 659,-1083 556,-1083"/>
 <text text-anchor="start" x="577.5" y="-1089.8" font-family="Helvetica,sans-Serif" font-size="14.00">dim_info</text>
 <polygon fill="none" stroke="black" points="399,-1062 399,-1083 433,-1083 433,-1062 399,-1062"/>
@@ -253,7 +253,7 @@
 <polygon fill="none" stroke="black" points="433,-747 433,-768 467,-768 467,-747 433,-747"/>
 <text text-anchor="start" x="445" y="-753.8" font-family="Helvetica,sans-Serif" font-size="14.00">1</text>
 <polygon fill="none" stroke="black" points="467,-747 467,-768 556,-768 556,-747 467,-747"/>
-<text text-anchor="start" x="503" y="-753.8" font-family="Helvetica,sans-Serif" font-size="14.00">s1</text>
+<text text-anchor="start" x="481" y="-753.8" font-family="Helvetica,sans-Serif" font-size="14.00">s1→Slice</text>
 <polygon fill="none" stroke="black" points="556,-747 556,-768 659,-768 659,-747 556,-747"/>
 <text text-anchor="start" x="572" y="-753.8" font-family="Helvetica,sans-Serif" font-size="14.00">slice_code</text>
 <polygon fill="none" stroke="black" points="399,-726 399,-747 433,-747 433,-726 399,-726"/>
@@ -446,7 +446,7 @@
 <polygon fill="black" stroke="black" stroke-width="2" points="383.6,-215.7 390.94,-223.33 389.97,-212.78 383.6,-215.7"/>
 </g>
 <!-- header_extension__seq -->
-<g id="node5" class="node">
+<g id="node8" class="node">
 <title>header_extension__seq</title>
 <polygon fill="#e0ffe0" stroke="transparent" points="421,-146 421,-167 452,-167 452,-146 421,-146"/>
 <polygon fill="none" stroke="black" points="421,-146 421,-167 452,-167 452,-146 421,-146"/>
@@ -476,7 +476,7 @@
 <polygon fill="black" stroke="black" stroke-width="2" points="402.61,-149.5 412.61,-146 402.61,-142.5 402.61,-149.5"/>
 </g>
 <!-- data__seq -->
-<g id="node6" class="node">
+<g id="node9" class="node">
 <title>data__seq</title>
 <polygon fill="#e0ffe0" stroke="transparent" points="460,-49 460,-70 491,-70 491,-49 460,-49"/>
 <polygon fill="none" stroke="black" points="460,-49 460,-70 491,-70 491,-49 460,-49"/>
@@ -504,8 +504,48 @@
 <path fill="none" stroke="black" stroke-width="2" d="M348.5,-125C365.4,-125 367.52,-115.79 383,-109 406.68,-98.61 432.74,-87.68 456.15,-78.03"/>
 <polygon fill="black" stroke="black" stroke-width="2" points="457.74,-81.16 465.66,-74.13 455.08,-74.69 457.74,-81.16"/>
 </g>
-<!-- header__inst__spatial_units -->
+<!-- header__inst__slice_dim -->
 <g id="node3" class="node">
+<title>header__inst__slice_dim</title>
+<polygon fill="#e0ffe0" stroke="transparent" points="895.5,-1094 895.5,-1115 965.5,-1115 965.5,-1094 895.5,-1094"/>
+<polygon fill="none" stroke="black" points="895.5,-1094 895.5,-1115 965.5,-1115 965.5,-1094 895.5,-1094"/>
+<text text-anchor="start" x="924" y="-1100.8" font-family="Helvetica,sans-Serif" font-size="14.00">id</text>
+<polygon fill="#e0ffe0" stroke="transparent" points="965.5,-1094 965.5,-1115 1123.5,-1115 1123.5,-1094 965.5,-1094"/>
+<polygon fill="none" stroke="black" points="965.5,-1094 965.5,-1115 1123.5,-1115 1123.5,-1094 965.5,-1094"/>
+<text text-anchor="start" x="1025.5" y="-1100.8" font-family="Helvetica,sans-Serif" font-size="14.00">value</text>
+<polygon fill="none" stroke="black" points="895.5,-1073 895.5,-1094 965.5,-1094 965.5,-1073 895.5,-1073"/>
+<text text-anchor="start" x="898.5" y="-1079.8" font-family="Helvetica,sans-Serif" font-size="14.00">slice_dim</text>
+<polygon fill="none" stroke="black" points="965.5,-1073 965.5,-1094 1123.5,-1094 1123.5,-1073 965.5,-1073"/>
+<text text-anchor="start" x="968.5" y="-1079.8" font-family="Helvetica,sans-Serif" font-size="14.00">((dim_info &gt;&gt; 4) &amp; 3)</text>
+</g>
+<!-- header__seq&#45;&gt;header__inst__slice_dim -->
+<g id="edge4" class="edge">
+<title>header__seq:dim_info_type&#45;&gt;header__inst__slice_dim</title>
+<path fill="none" stroke="#404040" d="M660,-1094C731.65,-1094 811.58,-1094 876.8,-1094"/>
+<polygon fill="#404040" stroke="#404040" points="877.13,-1097.5 887.13,-1094 877.13,-1090.5 877.13,-1097.5"/>
+</g>
+<!-- header__inst__phase_dim -->
+<g id="node4" class="node">
+<title>header__inst__phase_dim</title>
+<polygon fill="#e0ffe0" stroke="transparent" points="889.5,-1162 889.5,-1183 971.5,-1183 971.5,-1162 889.5,-1162"/>
+<polygon fill="none" stroke="black" points="889.5,-1162 889.5,-1183 971.5,-1183 971.5,-1162 889.5,-1162"/>
+<text text-anchor="start" x="924" y="-1168.8" font-family="Helvetica,sans-Serif" font-size="14.00">id</text>
+<polygon fill="#e0ffe0" stroke="transparent" points="971.5,-1162 971.5,-1183 1129.5,-1183 1129.5,-1162 971.5,-1162"/>
+<polygon fill="none" stroke="black" points="971.5,-1162 971.5,-1183 1129.5,-1183 1129.5,-1162 971.5,-1162"/>
+<text text-anchor="start" x="1031.5" y="-1168.8" font-family="Helvetica,sans-Serif" font-size="14.00">value</text>
+<polygon fill="none" stroke="black" points="889.5,-1141 889.5,-1162 971.5,-1162 971.5,-1141 889.5,-1141"/>
+<text text-anchor="start" x="892.5" y="-1147.8" font-family="Helvetica,sans-Serif" font-size="14.00">phase_dim</text>
+<polygon fill="none" stroke="black" points="971.5,-1141 971.5,-1162 1129.5,-1162 1129.5,-1141 971.5,-1141"/>
+<text text-anchor="start" x="974.5" y="-1147.8" font-family="Helvetica,sans-Serif" font-size="14.00">((dim_info &gt;&gt; 2) &amp; 3)</text>
+</g>
+<!-- header__seq&#45;&gt;header__inst__phase_dim -->
+<g id="edge5" class="edge">
+<title>header__seq:dim_info_type&#45;&gt;header__inst__phase_dim</title>
+<path fill="none" stroke="#404040" d="M660,-1094C684.36,-1094 680.47,-1118.74 703,-1128 755.51,-1149.58 817.13,-1159.1 871.22,-1162.85"/>
+<polygon fill="#404040" stroke="#404040" points="871.03,-1166.34 881.23,-1163.48 871.48,-1159.36 871.03,-1166.34"/>
+</g>
+<!-- header__inst__spatial_units -->
+<g id="node5" class="node">
 <title>header__inst__spatial_units</title>
 <polygon fill="#e0ffe0" stroke="transparent" points="723.5,-702 723.5,-723 817.5,-723 817.5,-702 723.5,-702"/>
 <polygon fill="none" stroke="black" points="723.5,-702 723.5,-723 817.5,-723 817.5,-702 723.5,-702"/>
@@ -519,13 +559,33 @@
 <text text-anchor="start" x="820.5" y="-687.8" font-family="Helvetica,sans-Serif" font-size="14.00">Kaitai::Struct::Stream::resolve_enum(Nifti1::UNITS, (xyzt_units &amp; 7))</text>
 </g>
 <!-- header__seq&#45;&gt;header__inst__spatial_units -->
-<g id="edge4" class="edge">
+<g id="edge6" class="edge">
 <title>header__seq:xyzt_units_type&#45;&gt;header__inst__spatial_units</title>
 <path fill="none" stroke="#404040" d="M660,-736C709.05,-736 761.81,-732.62 811.05,-728"/>
 <polygon fill="#404040" stroke="#404040" points="811.56,-731.46 821.18,-727.02 810.89,-724.5 811.56,-731.46"/>
 </g>
+<!-- header__inst__frequency_dim -->
+<g id="node6" class="node">
+<title>header__inst__frequency_dim</title>
+<polygon fill="#e0ffe0" stroke="transparent" points="902.5,-1026 902.5,-1047 1011.5,-1047 1011.5,-1026 902.5,-1026"/>
+<polygon fill="none" stroke="black" points="902.5,-1026 902.5,-1047 1011.5,-1047 1011.5,-1026 902.5,-1026"/>
+<text text-anchor="start" x="950.5" y="-1032.8" font-family="Helvetica,sans-Serif" font-size="14.00">id</text>
+<polygon fill="#e0ffe0" stroke="transparent" points="1011.5,-1026 1011.5,-1047 1117.5,-1047 1117.5,-1026 1011.5,-1026"/>
+<polygon fill="none" stroke="black" points="1011.5,-1026 1011.5,-1047 1117.5,-1047 1117.5,-1026 1011.5,-1026"/>
+<text text-anchor="start" x="1045.5" y="-1032.8" font-family="Helvetica,sans-Serif" font-size="14.00">value</text>
+<polygon fill="none" stroke="black" points="902.5,-1005 902.5,-1026 1011.5,-1026 1011.5,-1005 902.5,-1005"/>
+<text text-anchor="start" x="905.5" y="-1011.8" font-family="Helvetica,sans-Serif" font-size="14.00">frequency_dim</text>
+<polygon fill="none" stroke="black" points="1011.5,-1005 1011.5,-1026 1117.5,-1026 1117.5,-1005 1011.5,-1005"/>
+<text text-anchor="start" x="1014.5" y="-1011.8" font-family="Helvetica,sans-Serif" font-size="14.00">(dim_info &amp; 3)</text>
+</g>
+<!-- header__seq&#45;&gt;header__inst__frequency_dim -->
+<g id="edge7" class="edge">
+<title>header__seq:dim_info_type&#45;&gt;header__inst__frequency_dim</title>
+<path fill="none" stroke="#404040" d="M660,-1094C684.36,-1094 680.47,-1069.26 703,-1060 759.58,-1036.75 826.73,-1027.5 883.65,-1024.38"/>
+<polygon fill="#404040" stroke="#404040" points="883.97,-1027.87 893.79,-1023.88 883.63,-1020.88 883.97,-1027.87"/>
+</g>
 <!-- header__inst__temporal_units -->
-<g id="node4" class="node">
+<g id="node7" class="node">
 <title>header__inst__temporal_units</title>
 <polygon fill="#e0ffe0" stroke="transparent" points="711.5,-770 711.5,-791 821.5,-791 821.5,-770 711.5,-770"/>
 <polygon fill="none" stroke="black" points="711.5,-770 711.5,-791 821.5,-791 821.5,-770 711.5,-770"/>
@@ -539,7 +599,7 @@
 <text text-anchor="start" x="824.5" y="-755.8" font-family="Helvetica,sans-Serif" font-size="14.00">Kaitai::Struct::Stream::resolve_enum(Nifti1::UNITS, (xyzt_units &amp; 56))</text>
 </g>
 <!-- header__seq&#45;&gt;header__inst__temporal_units -->
-<g id="edge5" class="edge">
+<g id="edge8" class="edge">
 <title>header__seq:xyzt_units_type&#45;&gt;header__inst__temporal_units</title>
 <path fill="none" stroke="#404040" d="M660,-736C709.05,-736 761.81,-739.38 811.05,-744"/>
 <polygon fill="#404040" stroke="#404040" points="810.89,-747.5 821.18,-744.98 811.56,-740.54 810.89,-747.5"/>
