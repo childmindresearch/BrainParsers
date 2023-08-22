@@ -61,7 +61,6 @@ types:
         doc: "Unused."
       - id: dim_info
         type: s1
-        enum: slice
         doc: "MRI slice ordering."
 
       - id: dim
@@ -111,6 +110,7 @@ types:
         doc: "Last slice index."
       - id: slice_code
         type: s1
+        enum: slice
         doc: "Slice timing order."
       - id: xyzt_units
         type: s1
@@ -202,6 +202,12 @@ types:
         doc: 'MUST be "ni1\0" or "n+1\0".'
 
     instances:
+      frequency_dim:
+        value: dim_info & 0b11
+      phase_dim:
+        value: dim_info >> 2 & 0b11
+      slice_dim:
+        value: dim_info >> 4 & 0b11
       spatial_units:
         value: xyzt_units & 0b111
         enum: units
