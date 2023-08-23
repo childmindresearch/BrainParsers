@@ -210,7 +210,7 @@ types:
             type: str
             size: 4
             encoding: UTF-8
-            doc: 'MUST be "ni1\0" or "n+1\0".'
+            doc: 'MUST be "ni1\\0" or "n+1\\0".'
     
         instances:
           frequency_dim:
@@ -285,7 +285,7 @@ types:
             type: str
             size: 4
             encoding: UTF-8
-            doc: "MUST be 'ni2\0' or 'n+2\0'."
+            doc: "MUST be 'ni2\\0' or 'n+2\\0'."
           - id: magic2
             type: s1
             repeat: expr
@@ -424,7 +424,7 @@ types:
             type: str
             size: 15
             encoding: UTF-8
-            doc: "unused, filled with \0"
+            doc: "unused, filled with \\0"
             
         
         instances:
