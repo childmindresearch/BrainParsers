@@ -57,7 +57,7 @@ types:
     types:
       header:
         seq:
-          - id: sizeof_hdr2
+          - id: sizeof_hdr
             type: s4
             doc: "Must be 348."
           - id: data_type
