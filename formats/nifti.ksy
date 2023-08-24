@@ -14,17 +14,17 @@ seq:
       The first 4 bytes can be read to determine both if its nifti version 1.1
       or version 2 and the endianness of the file.
     size: 4
-  
+
 instances:
   file:
     pos: 0
     type:
       switch-on: sizeof_hdr_preflight
       cases:
-        '[0x5c, 0x01, 0x00, 0x00]': n1_file
-        '[0x00, 0x00, 0x01, 0x5c]': n1_file
-        '[0x1c, 0x02, 0x00, 0x00]': n2_file
-        '[0x00, 0x00, 0x02, 0x1c]': n2_file
+        "[0x5c, 0x01, 0x00, 0x00]": n1_file
+        "[0x00, 0x00, 0x01, 0x5c]": n1_file
+        "[0x1c, 0x02, 0x00, 0x00]": n2_file
+        "[0x00, 0x00, 0x02, 0x1c]": n2_file
 
 types:
   n1_file:
@@ -32,8 +32,8 @@ types:
       endian:
         switch-on: _root.sizeof_hdr_preflight
         cases:
-          '[0x5c, 0x01, 0x00, 0x00]': le
-          '[0x00, 0x00, 0x01, 0x5c]': be
+          "[0x5c, 0x01, 0x00, 0x00]": le
+          "[0x00, 0x00, 0x01, 0x5c]": be
     seq:
       - id: header
         type: header
@@ -44,7 +44,7 @@ types:
         if: header_extension.has_extension == 1
       - id: data
         type: data
-        
+
     types:
       header:
         seq:
@@ -73,7 +73,7 @@ types:
           - id: dim_info
             type: s1
             doc: "MRI slice ordering."
-    
+
           - id: dim
             type: s2
             repeat: expr
@@ -144,7 +144,7 @@ types:
           - id: glmin
             type: s4
             doc: "Unused."
-    
+
           - id: descrip
             type: str
             size: 80
@@ -155,7 +155,7 @@ types:
             size: 24
             encoding: UTF-8
             doc: "Auxiliary filename."
-    
+
           - id: qform_code
             type: s2
             enum: xform
@@ -164,7 +164,7 @@ types:
             type: s2
             enum: xform
             doc: "NIFTI_XFORM_* code."
-    
+
           - id: quatern_b
             type: f4
             doc: "Quaternion b param."
@@ -183,7 +183,7 @@ types:
           - id: qoffset_z
             type: f4
             doc: "Quaternion z param."
-    
+
           - id: srow_x
             type: f4
             repeat: expr
@@ -199,19 +199,19 @@ types:
             repeat: expr
             repeat-expr: 4
             doc: "3rd row affine transform."
-    
+
           - id: intent_name
             type: str
             size: 16
             encoding: UTF-8
             doc: "'name' or meaning of data."
-    
+
           - id: magic
             type: str
             size: 4
             encoding: UTF-8
             doc: 'MUST be "ni1\\0" or "n+1\\0".'
-    
+
         instances:
           frequency_dim:
             value: dim_info & 0b11
@@ -225,14 +225,14 @@ types:
           temporal_units:
             value: xyzt_units & 0b111000
             enum: units
-    
+
       header_extension:
         seq:
           - id: has_extension
             type: s1
           - id: padding
             size: 3
-            
+
       extension:
         seq:
           - id: esize
@@ -244,7 +244,7 @@ types:
             type: str
             size: esize - 8
             encoding: UTF-8
-    
+
       data:
         seq:
           - id: data
@@ -262,8 +262,8 @@ types:
       endian:
         switch-on: _root.sizeof_hdr_preflight
         cases:
-          '[0x1c, 0x02, 0x00, 0x00]': le
-          '[0x00, 0x00, 0x02, 0x1c]': be
+          "[0x1c, 0x02, 0x00, 0x00]": le
+          "[0x00, 0x00, 0x02, 0x1c]": be
     seq:
       - id: header
         type: header
@@ -274,7 +274,7 @@ types:
         if: header_extension.has_extension == 1
       - id: data
         type: data
-        
+
     types:
       header:
         seq:
@@ -290,7 +290,7 @@ types:
             type: s1
             repeat: expr
             repeat-expr: 4
-            doc: 'MUST be 0D 0A 1A 0A.'
+            doc: "MUST be 0D 0A 1A 0A."
           - id: datatype
             type: s2
             enum: dt
@@ -344,7 +344,7 @@ types:
           - id: slice_end
             type: s8
             doc: "Last slice index."
-            
+
           - id: descrip
             type: str
             size: 80
@@ -363,7 +363,7 @@ types:
             type: s4
             enum: xform
             doc: "NIFTI_XFORM_* code."
-            
+
           - id: quatern_b
             type: f8
             doc: "Quaternion b param."
@@ -379,10 +379,10 @@ types:
           - id: qoffset_y
             type: f8
             doc: "Quaternion y param."
-          - id: qoffset_z 
+          - id: qoffset_z
             type: f8
             doc: "Quaternion z param."
-            
+
           - id: srow_x
             type: f8
             repeat: expr
@@ -398,7 +398,7 @@ types:
             repeat: expr
             repeat-expr: 4
             doc: "3rd row affine transform."
-            
+
           - id: slice_code
             type: s4
             enum: slice
@@ -415,18 +415,17 @@ types:
             size: 16
             encoding: UTF-8
             doc: "'name' or meaning of data."
-            
+
           - id: dim_info
             type: s1
             doc: "MRI slice ordering."
-            
+
           - id: unused_str
             type: str
             size: 15
             encoding: UTF-8
             doc: "unused, filled with \\0"
-            
-        
+
         instances:
           frequency_dim:
             value: dim_info & 0b11
@@ -440,15 +439,14 @@ types:
           temporal_units:
             value: xyzt_units & 0b111000
             enum: units
-            
-      
+
       header_extension:
         seq:
           - id: has_extension
             type: s1
           - id: padding
             size: 3
-            
+
       extension:
         seq:
           - id: esize
@@ -460,7 +458,7 @@ types:
             type: str
             size: esize - 8
             encoding: UTF-8
-            
+
       data:
         seq:
           - id: data
@@ -473,7 +471,6 @@ types:
               (_parent.header.dim[0] >= 5 ? _parent.header.dim[5] : 1) *
               (_parent.header.dim[0] >= 6 ? _parent.header.dim[6] : 1) *
               (_parent.header.dim[0] >= 7 ? _parent.header.dim[7] : 1)
-      
 
 enums:
   dt:
@@ -546,33 +543,79 @@ enums:
     2018: fsl_topup_field
 
   xform:
-    0: unknown
-    1: scanner_anat
-    2: aligned_anat
-    3: talairach
-    4: mni_152
-    5: template_other
+    0:
+      id: unknown
+      doc: "Arbitrary coordinates."
+    1:
+      id: scanner_anat
+      doc: "Scanner-based anatomical coordinates."
+    2:
+      id: aligned_anat
+      doc: 'Coordinates aligned to another file''s, or to the anatomical "truth" (with an arbitrary coordinate center).'
+    3:
+      id: talairach
+      doc: "Coordinates aligned to the Talairach space."
+    4:
+      id: mni_152
+      doc: "Coordinates aligned to the MNI152 space."
+    5:
+      id: template_other
+      doc: "Coordinates aligned to some template that is not MNI152 or Talairach."
 
   units:
-    0: unknown
-    1: meter
-    2: mm
-    3: micron
-    8: sec
-    16: msec
-    24: usec
-    32: hz
-    40: ppm
-    48: rads
+    0:
+      id: unknown
+      doc: "Unknown units"
+    1:
+      id: meter
+      doc: "Meter (m)"
+    2:
+      id: mm
+      doc: "Millimeter (mm)"
+    3:
+      id: micron
+      doc: "Micron (um)"
+    8:
+      id: sec
+      doc: "Seconds (s)"
+    16:
+      id: msec
+      doc: "Miliseconds (ms)"
+    24:
+      id: usec
+      doc: "Microseconds (us)"
+    32:
+      id: hz
+      doc: "Hertz (Hz)"
+    40:
+      id: ppm
+      doc: "Parts-per-million (ppm)"
+    48:
+      id: rads
+      doc: "Radians per second (rad/s)"
 
   slice:
-    0: unknown
-    1: seq_inc
-    2: seq_dec
-    3: alt_inc
-    4: alt_dec
-    5: alt_inc2
-    6: alt_dec2
+    0:
+      id: unknown
+      doc: "Slice order: Unknown"
+    1:
+      id: seq_inc
+      doc: "Slice order: Sequential, increasing"
+    2:
+      id: seq_dec
+      doc: "Slice order: Sequential, decreasing"
+    3:
+      id: alt_inc
+      doc: "Slice order: Interleaved, increasing, starting at the first slice"
+    4:
+      id: alt_dec
+      doc: "Slice order: Interleaved, decreasing, starting at the last slice"
+    5:
+      id: alt_inc2
+      doc: "Slice order: Interleaved, increasing, starting at the second slice"
+    6:
+      id: alt_dec2
+      doc: "Slice order: Interleaved, decreasing, starting at the second to last slice"
 
   ecode:
     0: ignore
@@ -661,4 +704,4 @@ enums:
     44:
       id: mrs
       doc: |
-        Magnetic Resonance Spectroscopy (MRS)        
+        Magnetic Resonance Spectroscopy (MRS)
