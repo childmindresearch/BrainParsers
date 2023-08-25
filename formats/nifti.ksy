@@ -37,11 +37,11 @@ types:
     seq:
       - id: header
         type: header
-      - id: header_extension
-        type: header_extension
+      - id: extension_indicator
+        type: extension_indicator
       - id: extension
         type: extension
-        if: header_extension.has_extension == 1
+        if: extension_indicator.has_extension == 1
       - id: data
         type: data
 
@@ -226,7 +226,7 @@ types:
             value: xyzt_units & 0b111000
             enum: units
 
-      header_extension:
+      extension_indicator:
         seq:
           - id: has_extension
             type: s1
@@ -235,15 +235,26 @@ types:
 
       extension:
         seq:
-          - id: esize
-            type: s4
-          - id: ecode
-            enum: ecode
-            type: s4
-          - id: econtent
-            type: str
-            size: esize - 8
-            encoding: UTF-8
+          - id: extension_header
+            type: extension_header
+          - id: extension_data
+            type: extension_data
+
+        types:
+          extension_header:
+            seq:
+              - id: esize
+                type: s4
+              - id: ecode
+                enum: ecode
+                type: s4
+
+          extension_data:
+            seq:
+              - id: edata
+                type: str
+                size: _parent.extension_header.esize - 8
+                encoding: UTF-8
 
       data:
         seq:
@@ -257,6 +268,7 @@ types:
               (_parent.header.dim[0] >= 5 ? _parent.header.dim[5] : 1) *
               (_parent.header.dim[0] >= 6 ? _parent.header.dim[6] : 1) *
               (_parent.header.dim[0] >= 7 ? _parent.header.dim[7] : 1)
+
   n2_file:
     meta:
       endian:
@@ -267,11 +279,11 @@ types:
     seq:
       - id: header
         type: header
-      - id: header_extension
-        type: header_extension
+      - id: extension_indicator
+        type: extension_indicator
       - id: extension
         type: extension
-        if: header_extension.has_extension == 1
+        if: extension_indicator.has_extension == 1
       - id: data
         type: data
 
@@ -440,7 +452,7 @@ types:
             value: xyzt_units & 0b111000
             enum: units
 
-      header_extension:
+      extension_indicator:
         seq:
           - id: has_extension
             type: s1
@@ -449,15 +461,26 @@ types:
 
       extension:
         seq:
-          - id: esize
-            type: s4
-          - id: ecode
-            enum: ecode
-            type: s4
-          - id: econtent
-            type: str
-            size: esize - 8
-            encoding: UTF-8
+          - id: extension_header
+            type: extension_header
+          - id: extension_data
+            type: extension_data
+
+        types:
+          extension_header:
+            seq:
+              - id: esize
+                type: s4
+              - id: ecode
+                enum: ecode
+                type: s4
+
+          extension_data:
+            seq:
+              - id: edata
+                type: str
+                size: _parent.extension_header.esize - 8
+                encoding: UTF-8
 
       data:
         seq:
