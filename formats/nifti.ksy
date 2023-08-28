@@ -507,7 +507,7 @@ enums:
     64: float64
     128: rgb24
     256: int8
-    512: unit16
+    512: uint16
     768: uint32
     1024: int64
     1280: uint64
