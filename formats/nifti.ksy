@@ -55,39 +55,39 @@ types:
             type: str
             size: 10
             encoding: UTF-8
-            doc: "Unused."
+            doc: "Unused placeholder for ANALYZE(TM) 7.5 backwards compatibility. (Removed in NIfTI-2)."
           - id: db_name
             type: str
             size: 18
             encoding: UTF-8
-            doc: "Unused."
+            doc: "Unused placeholder for ANALYZE(TM) 7.5 backwards compatibility. (Removed in NIfTI-2)."
           - id: extents
             type: s4
-            doc: "Unused."
+            doc: "Unused placeholder for ANALYZE(TM) 7.5 backwards compatibility. (Removed in NIfTI-2)."
           - id: session_error
             type: s2
-            doc: "Unused."
+            doc: "Unused placeholder for ANALYZE(TM) 7.5 backwards compatibility. (Removed in NIfTI-2)."
           - id: regular
             type: s1
-            doc: "Unused."
+            doc: "Unused placeholder for ANALYZE(TM) 7.5 backwards compatibility. (Removed in NIfTI-2)."
           - id: dim_info
             type: s1
-            doc: "MRI slice ordering."
+            doc: "MRI slice ordering. Stores frequency_dim, phase_dim and slice_dim in 2 bit each."
 
           - id: dim
             type: s2
             repeat: expr
             repeat-expr: 8
-            doc: "Data array dimensions."
+            doc: "Data array dimensions. dim[0] contains the number of dimensions, dim[1..7] describe the sizes of the dimensions."
           - id: intent_p1
             type: f4
-            doc: "1st intent parameter."
+            doc: "1st intent parameter. Contains additionaly parameters depending on the intent code."
           - id: intent_p2
             type: f4
-            doc: "2nd intent parameter."
+            doc: "2nd intent parameter. Contains additionaly parameters depending on the intent code."
           - id: intent_p3
             type: f4
-            doc: "3rd intent parameter."
+            doc: "3rd intent parameter. Contains additionaly parameters depending on the intent code."
           - id: intent_code
             type: s2
             enum: intent
